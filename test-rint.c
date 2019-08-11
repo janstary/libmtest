@@ -20,8 +20,6 @@ double in[] = {
 	+1.5000000001,
 	(double) INT_MIN,
 	(double) INT_MAX,
-	(double) LONG_MIN,
-	(double) LONG_MAX,
 	0
 };
 
