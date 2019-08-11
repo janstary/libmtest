@@ -22,11 +22,11 @@ struct value {
 	{ +1.4999999999, +1.0000000000 },
 	{ +1.5000000000, +2.0000000000 },
 	{ +1.5000000001, +2.0000000000 },
-	{ (double) INT_MIN,    INT_MIN },
-	{ (double) INT_MAX,    INT_MAX },
-	{ (double) LONG_MIN,  LONG_MIN },
-	{ (double) LONG_MAX,  LONG_MAX },
-	{ 0, 0 }
+	{  INT_MIN,       INT_MIN      },
+	{  INT_MAX,       INT_MAX      },
+	{ LONG_MIN,      LONG_MIN      },
+	{ LONG_MAX,      LONG_MAX      },
+	{  0, 0 }
 
 };
 
