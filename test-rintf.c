@@ -36,8 +36,8 @@ struct value {
  * the value whose last binary digit is even (zero) is chosen.
  * This is the default mode.
  *
- * So 0.5 goes to zero (not one),
- * but 1.5 goes to two (not one).
+ * So  0.5 goes down to zero (not to the odd one),
+ * but 1.5 goes up   to  two (not to the odd one).
  */
 	{        +0.5,	       +0.0	},
 	{        +1.0,	       +1.0	},
@@ -47,7 +47,11 @@ struct value {
 	{        +3.0,	       +3.0	},
 	{        +3.5,	       +4.0	},
 
-/* TODO: test the nearest float below 0.5, 1.5, 2.5, ... */
+/* TODO: test the nearest float below 0.5, 1.5, 2.5, ...
+ * 0.5 is 3f000000, so try 3effffff
+ * 1.0 is 3fc00000, so try 3fbfffff,
+ * ...
+ * */
 
 	{ +16777216,	+16777216	},
 	{ +16777217,	+16777217	},
