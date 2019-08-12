@@ -54,12 +54,31 @@ main(int argc, char** argv)
 {
 	int c;
 	float r;
-	int vflag = 0;
 	struct value *v;
 
-	while ((c = getopt(argc, argv, "v")) != -1) switch (c) {
+	int vflag = 0;
+	int dflag = 1;
+	int uflag = 1;
+	int zflag = 1;
+
+	while ((c = getopt(argc, argv, "vduz")) != -1) switch (c) {
 		case 'v':
 			vflag = 1;
+			break;
+		case 'd':
+			dflag = 1;
+			uflag = 0;
+			zflag = 0;
+			break;
+		case 'u':
+			dflag = 0;
+			uflag = 1;
+			zflag = 0;
+			break;
+		case 'z':
+			dflag = 0;
+			uflag = 0;
+			zflag = 1;
 			break;
 		default:
 			break;
