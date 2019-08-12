@@ -19,3 +19,4 @@ uint32_t	fu(float);
 #define F_FOLLOW10 (0x1.000002p0) /* 0x38000001, just > 0x3f800000 = 1.0 */
 #define F_FOLLOW20 (0x2.000003p0) /* 0x40000001, just > 0x40000000 = 2.0 */
 #define F_FOLLOW30 (0x3.000003p0) /* 0x40400001, just > 0x40400000 = 3.0 */
+#define F_FOLLOW40 (0x4.000005p0) /* 0x40800001, just > 0x40800000 = 4.0 */
