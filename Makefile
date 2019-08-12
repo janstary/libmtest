@@ -1,5 +1,5 @@
 LDFLAGS	= -lm
-CFLAGS	= -Wall -pedantic
+CFLAGS	= -std=c99 -Wall -pedantic
 TESTS	= test-rintf
 OBJS	= utils.o
 
