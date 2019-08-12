@@ -16,25 +16,17 @@ struct value {
 	{ -16777216,	-16777216	},
 	{        -1,           -1	},
 
-/* man fesetround
- *   FE_TONEAREST  Results are rounded to the closest representable value.
- *   If the exact result is exactly half way between two representable values,
- *   the value whose last binary digit is even (zero) is chosen.
- *   This is the default mode.
- * So  0.5 goes down to zero (not to the odd one),
- * but 1.5 goes up   to  two (not to the odd one).
- */
-	{         +0.5,	0.0	},
-	{         +1.0,	1.0	},
-	{         +1.5,	2.0	},
-	{         +2.0,	2.0	},
-	{         +2.5,	2.0	},
-	{         +3.0,	3.0	},
-	{         +3.5,	4.0	},
+	{ +0.5,	0.0 },
+	{ +1.0,	1.0 },
+	{ +1.5,	2.0 },
+	{ +2.0,	2.0 },
+	{ +2.5,	2.0 },
+	{ +3.0,	3.0 },
+	{ +3.5,	4.0 },
 
-	{ F_BELOW15, 1.0	},
-	{ F_BELOW35, 3.0	},
-	{ F_BELOW55, 5.0	},
+	{ F_BELOW15, 1.0 },
+	{ F_BELOW35, 3.0 },
+	{ F_BELOW55, 5.0 },
 
 	{ +16777216,	+16777216	},
 	{ +16777217,	+16777217	},
