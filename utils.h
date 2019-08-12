@@ -5,8 +5,8 @@ union uf {
 	float    f;
 };
 
-float		u2f(uint32_t);
-uint32_t	f2u(float);
+float		uf(uint32_t);
+uint32_t	fu(float);
 
 #define F_BELOW15 (0x1.7ffffep0) /* 0x3fbfffff, just below 0x3fc00000 = 1.5 */
 #define F_BELOW35 (0x3.7ffffbp0) /* 0x405fffff, just below 0x40600000 = 3.5 */

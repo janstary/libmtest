@@ -2,7 +2,7 @@
 #include "utils.h"
 
 float
-u2f(uint32_t u)
+uf(uint32_t u)
 {
 	union uf uf;
 	uf.u = u;
@@ -10,7 +10,7 @@ u2f(uint32_t u)
 }
 
 uint32_t
-f2u(float f)
+fu(float f)
 {
 	union uf uf;
 	uf.f = f;

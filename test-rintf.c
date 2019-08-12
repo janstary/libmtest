@@ -63,7 +63,7 @@ main(int argc, char** argv)
 
 	while ((c = getopt(argc, argv, "vduz")) != -1) switch (c) {
 		case 'v':
-			vflag = 1;
+			vflag++;
 			break;
 		case 'd':
 			dflag = 1;
@@ -89,11 +89,13 @@ main(int argc, char** argv)
 	for (v = values; v->in; v++) {
 		if ((r = rintf(v->in)) != v->out) {
 			printf("% .8f (%0#10x) % .8f (%0#10x) % .8f (%0#10x)\n",
-				v->in,f2u(v->in), r,f2u(r), v->out,f2u(v->out));
+				v->in, fu(v->in), r, fu(r), v->out, fu(v->out));
 			return 1;
-		} else if (vflag) {
-			printf("% .8f (%0#10x) % .8f (%0#10x)\n",
-				v->in, f2u(v->in), v->out, f2u(v->out));
+		} else if (vflag > 0) {
+			printf("% .8f % .8f", v->in, v->out);
+			if (vflag > 1)
+				printf(" %0#10x %0#10x", fu(v->in), fu(v->out));
+			putchar('\n');
 		}
 	}
 
