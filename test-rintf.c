@@ -120,10 +120,10 @@ struct v rz[] = {
 };
 
 struct t tests[] = {
-	{ FE_TONEAREST,  "to nearest", rn },
-	{ FE_DOWNWARD,	 "downward",   rd },
-	{ FE_UPWARD,	 "upward",     ru },
-	{ FE_TOWARDZERO, "to zero",    rz }
+	{ FE_TONEAREST,  "to nearest",   rn },
+	{ FE_DOWNWARD,	 "downward",     rd },
+	{ FE_UPWARD,	 "upward",       ru },
+	{ FE_TOWARDZERO, "towards zero", rz }
 };
 
 
