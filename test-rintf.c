@@ -8,6 +8,8 @@
 
 #include "utils.h"
 
+extern int optind;
+
 int vflag = 0;
 int dflag = 1;
 int uflag = 1;
