@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include <stdint.h>
 #include <limits.h>
 #include <stdio.h>
@@ -39,21 +40,31 @@ struct value {
 };
 
 int
-main()
+main(int argc, char** argv)
 {
+	int c;
 	float r;
+	int vflag = 0;
 	struct value *v;
+
+	while ((c = getopt(argc, argv, "v")) != -1) switch (c) {
+		case 'v':
+			vflag = 1;
+			break;
+		default:
+			break;
+	}
+	argc -= optind;
+	argv -= optind;
 
 	for (v = values; v->in; v++) {
 		if ((r = rintf(v->in)) != v->out) {
 			printf("% .8f (%0#6x) % .8f (%0#6x) != % .8f (%0#6x)\n",
 				v->in,f2u(v->in), r,f2u(r), v->out,f2u(v->out));
 			return 1;
-		/*
-		} else {
-			printf("% .8f (%0#6x): % .8f (%0#6x)\n",
+		} else if (vflag) {
+			printf("% .8f (%0#6x) % .8f (%0#6x)\n",
 				v->in, f2u(v->in), v->out, f2u(v->out));
-		*/
 		}
 	}
 
