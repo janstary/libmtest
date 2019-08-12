@@ -32,9 +32,9 @@ struct value {
 	{         +3.0,	3.0	},
 	{         +3.5,	4.0	},
 
-	{ 0x1.7ffffep0, 1.0	}, /* 0x3fbfffff, just below 1.5 = 0x3fc00000 */
-	{ 0x3.7ffffbp0, 3.0	}, /* 0x405fffff, just below 3.5 = 0x40600000 */
-	{ 0x5.7ffff5p0, 5.0	}, /* 0x40afffff, just below 5.5 = 0x40b00000 */
+	{ F_BELOW15, 1.0	},
+	{ F_BELOW35, 3.0	},
+	{ F_BELOW55, 5.0	},
 
 	{ +16777216,	+16777216	},
 	{ +16777217,	+16777217	},
