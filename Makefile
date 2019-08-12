@@ -1,11 +1,13 @@
 LDFLAGS	= -lm
 CFLAGS	= -Wall -pedantic
 TESTS	= test-rintf
+OBJS	= utils.o
 
 test: $(TESTS)
 	for t in $(TESTS) ; do ./$$t ; done
 
-$(TESTS): utils.o
+test-rintf: test-rintf.c $(OBJS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ test-rintf.c $(OBJS)
 
 clean:
 	rm -rf $(TESTS) utils.o core *~
