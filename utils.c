@@ -16,3 +16,19 @@ fu(float f)
 	uf.f = f;
 	return uf.u;
 }
+
+double
+ud(uint64_t u)
+{
+	union ud ud;
+	ud.u = u;
+	return ud.d;
+}
+
+uint64_t
+du(double d)
+{
+	union ud ud;
+	ud.d = d;
+	return ud.u;
+}

@@ -1,47 +1,198 @@
+#include <unistd.h>
 #include <stdint.h>
 #include <limits.h>
 #include <stdio.h>
 #include <math.h>
+#include <fenv.h>
+#include <err.h>
 
-struct value {
-	double in;
-	double out;
-} values[] = {
+#include "utils.h"
 
-	{ -16777216,	 -16777216 },
-	{ -1.5000000001, -2.0000000000 },
-	{ -1.5000000000, -2.0000000000 },
-	{ -1.4999999999, -1.0000000000 },
-	{ -1.0000000000, -1.0000000000 },
-	{ -0.5000000001, -1.0000000000 },
-	{ -0.5000000000, -0.0000000000 },
-	{ -0.4999999999, -0.0000000000 },
-	{ +0.4999999999, +0.0000000000 },
-	{ +0.5000000000, +0.0000000000 },
-	{ +0.5000000001, +1.0000000000 },
-	{ +1.0000000000, +1.0000000000 },
-	{ +1.4999999999, +1.0000000000 },
-	{ +1.5000000000, +2.0000000000 },
-	{ +1.5000000001, +2.0000000000 },
-	{  INT_MIN,       INT_MIN      },
-	{  INT_MAX,       INT_MAX      },
-	{ LONG_MIN,      LONG_MIN      },
-	{ LONG_MAX,      LONG_MAX      },
-	{ +16777216,	 +16777216 },
-	{  0, 0 }
+extern int optind;
 
+int vflag = 0;
+int dflag = 1;
+int uflag = 1;
+int zflag = 1;
+
+struct t {
+	int r;
+	char* say;
+	struct v {
+		double i;
+		double o;
+	}	*v;
 };
 
+struct v rn[] = {
+	{ -4.0,		-4.0 },
+	{ -3.5,		-4.0 },
+	{ -D_ALMOST35,	-3.0 },
+	{ -3.0,		-3.0 },
+	{ -D_FOLLOW25,	-3.0 },
+	{ -2.5,		-2.0 },
+	{ -2.0,		-2.0 },
+	{ -1.5,		-2.0 },
+	{ -D_ALMOST15,	-1.0 },
+	{ -1.0,		-1.0 },
+	{ -D_FOLLOW05,	-1.0 },
+	{ -0.5,		-0.0 },
+	{ +0.5,		+0.0 },
+	{ +D_FOLLOW05,	+1.0 },
+	{ +1.0,		+1.0 },
+	{ +D_ALMOST15,	+1.0 },
+	{ +1.5,		+2.0 },
+	{ +2.0,		+2.0 },
+	{ +2.5,		+2.0 },
+	{ +D_FOLLOW25,	+3.0 },
+	{ +3.0,		+3.0 },
+	{ +D_ALMOST35,	+3.0 },
+	{ +3.5,		+4.0 },
+	{ +4.0,		+4.0 },
+	{ +0.0,         +0.0 }
+};
+
+struct v rd[] = {
+	{ -4.0,		-4.0 },
+	{ -D_FOLLOW30,	-4.0 },
+	{ -3.0,		-3.0 },
+	{ -D_FOLLOW20,	-3.0 },
+	{ -2.0,		-2.0 },
+	{ -D_FOLLOW10,	-2.0 },
+	{ -1.0,		-1.0 },
+	{ -D_FOLLOW00,	-1.0 },
+	{ +D_ALMOST10,	+0.0 },
+	{ +1.0,		+1.0 },
+	{ +D_ALMOST20,	+1.0 },
+	{ +2.0,		+2.0 },
+	{ +D_ALMOST30,	+2.0 },
+	{ +3.0,		+3.0 },
+	{ +D_ALMOST40,	+3.0 },
+	{ +4.0,		+4.0 },
+	{ +0.0,         +0.0 }
+};
+
+struct v ru[] = {
+	{ -4.0,		-4.0 },
+	{ -D_ALMOST40,	-3.0 },
+	{ -3.0,		-3.0 },
+	{ -D_ALMOST30,	-2.0 },
+	{ -2.0,		-2.0 },
+	{ -D_ALMOST20,	-1.0 },
+	{ -1.0,		-1.0 },
+	{ -D_ALMOST10,	+0.0 },
+	{ +D_FOLLOW00,	+1.0 },
+	{ +1.0,		+1.0 },
+	{ +D_FOLLOW10,	+2.0 },
+	{ +2.0,		+2.0 },
+	{ +D_FOLLOW20,	+3.0 },
+	{ +3.0,		+3.0 },
+	{ +D_FOLLOW30,	+4.0 },
+	{ +4.0,		+4.0 },
+	{ +D_FOLLOW40,	+5.0 },
+	{ +0.0,         +0.0 }
+};
+
+struct v rz[] = {
+	{ -D_FOLLOW40,	-4.0 },
+	{ -4.0,		-4.0 },
+	{ -D_ALMOST40,	-3.0 },
+	{ -D_FOLLOW30,	-3.0 },
+	{ -3.0,		-3.0 },
+	{ -D_ALMOST30,	-2.0 },
+	{ -D_FOLLOW20,	-2.0 },
+	{ -2.0,		-2.0 },
+	{ -D_ALMOST20,	-1.0 },
+	{ -D_FOLLOW10,	-1.0 },
+	{ -1.0,		-1.0 },
+	{ -D_ALMOST10,	-0.0 },
+	{ -D_FOLLOW00,	-0.0 },
+	{ +D_FOLLOW00,	+0.0 },
+	{ +D_ALMOST10,	+0.0 },
+	{ +1.0,		+1.0 },
+	{ +D_FOLLOW10,	+1.0 },
+	{ +D_ALMOST20,	+1.0 },
+	{ +2.0,		+2.0 },
+	{ +D_FOLLOW20,	+2.0 },
+	{ +D_ALMOST30,	+2.0 },
+	{ +3.0,		+3.0 },
+	{ +D_FOLLOW30,	+3.0 },
+	{ +D_ALMOST40,	+3.0 },
+	{ +4.0,		+4.0 },
+	{ +D_FOLLOW40,	+4.0 },
+	{ +0.0,         +0.0 }
+};
+
+struct t tests[] = {
+	{ FE_TONEAREST,  "to nearest",   rn },
+	{ FE_DOWNWARD,	 "downward",     rd },
+	{ FE_UPWARD,	 "upward",       ru },
+	{ FE_TOWARDZERO, "towards zero", rz }
+};
+
+
 int
-main()
+testround(struct t *t)
 {
-	double r;
-	struct value *v;
-	for (v = values; v->in; v++) {
-		if ((r = rint(v->in)) != v->out) {
-			printf("rint(%f) = %f != %f\n", v->in, r, v->out);
+	double d;
+	struct v *v;
+	if (NULL == t)
+		return 1;
+	if (0 != fesetround(t->r))
+		return 1;
+	if (vflag && t->say)
+		printf("rounding %s\n", t->say);
+	for (v = t->v; v->i; v++) {
+		if ((d = rint(v->i)) != v->o) {
+			printf("% .17f % .17f % .17f\n", v->i, v->o, d);
+			if (vflag > 1)
+				printf(" %0#18llx  %0#18llx  %0#18llx\n",
+				du(v->i), du(v->o), du(d));
 			return 1;
+		} else if (vflag > 0) {
+			printf("% .17f % .17f", v->i, v->o);
+			if (vflag > 1)
+				printf("  %0#18llx %0#18llx", du(v->i), du(v->o));
+			putchar('\n');
 		}
 	}
+	return 0;
+}
+
+int
+main(int argc, char** argv)
+{
+	int c;
+	struct t *t;
+
+	while ((c = getopt(argc, argv, "vduz")) != -1) switch (c) {
+		case 'v':
+			vflag++;
+			break;
+		case 'd':
+			dflag = 1;
+			uflag = 0;
+			zflag = 0;
+			break;
+		case 'u':
+			dflag = 0;
+			uflag = 1;
+			zflag = 0;
+			break;
+		case 'z':
+			dflag = 0;
+			uflag = 0;
+			zflag = 1;
+			break;
+		default:
+			break;
+	}
+	argc -= optind;
+	argv -= optind;
+
+	for (t = tests; t->v; t++)
+		if (0 != testround(t))
+			return 1;
+
 	return 0;
 }
