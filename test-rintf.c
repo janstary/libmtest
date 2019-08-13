@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <math.h>
 #include <fenv.h>
-#include <err.h>
 
 #include "utils.h"
 
