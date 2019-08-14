@@ -1,7 +1,11 @@
 #define FUNC	rintf
-#define ITYPE	float
-#define OTYPE	float
 
-#define REALFMT	"% .8f"
-#define HEXAFMT	"%0#10x"
-#define RU	fu
+#define ITYPE	float
+#define INUMFMT	"% .8f"
+#define IHEXFMT	"%0#10x"
+#define INUMHEX	fu
+
+#define OTYPE	float
+#define ONUMFMT	"% .8f"
+#define OHEXFMT	"%0#10x"
+#define ONUMHEX	fu

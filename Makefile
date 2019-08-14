@@ -1,6 +1,6 @@
 LDFLAGS	= -lm
 CFLAGS	= -std=c99 -Wall -pedantic
-TESTS	= test-rintf test-rint test-rintl
+TESTS	= test-rintf test-rint test-rintl test-lrintf
 OBJS	= utils.o
 
 all: $(TESTS)
@@ -22,6 +22,11 @@ test-rintl: test-rintl.c test-rintl.h test-func.h test-func.c $(OBJS)
 	cp test-rintl.h which.h
 	$(CC) $(CFLAGS) -c test-rintl.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ test-func.c test-rintl.o $(OBJS)
+
+test-lrintf: test-lrintf.c test-lrintf.h test-func.h test-func.c $(OBJS)
+	cp test-lrintf.h which.h
+	$(CC) $(CFLAGS) -c test-lrintf.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ test-func.c test-lrintf.o $(OBJS)
 
 utils.o: utils.c utils.h
 	$(CC) $(CFLAGS) -c utils.c
