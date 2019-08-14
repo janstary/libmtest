@@ -72,7 +72,24 @@ main(int argc, char** argv)
 	argv -= optind;
 
 	for (t = tests; t->io; t++) {
-		/* FIXME: are we doing this (-n -d -u -z)? */
+		switch (t->round) {
+			case FE_TONEAREST:
+				if (dflag + uflag + zflag > 0)
+					continue;
+				break;
+			case FE_DOWNWARD:
+				if (0 == dflag)
+					continue;
+				break;
+			case FE_UPWARD:
+				if (0 == uflag)
+					continue;
+				break;
+			case FE_TOWARDZERO:
+				if (0 == zflag)
+					continue;
+				break;
+		}
 		if (0 != fesetround(t->round))
 			return 1;
 		if (vflag && t->comment)
