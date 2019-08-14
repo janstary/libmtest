@@ -5,14 +5,13 @@
 struct io roundn[] = {
 	{ INT8_MAX,	INT8_MAX	},
 	{ INT16_MAX,	INT16_MAX	},
-	/*
-	INT32_MAX is 2147483647, but (float) INT_MAX = 2147483648.00000000,
-	as the INT32_MAX int is already too big to be exactly represented
-	as a float. So we get lrintf((float)INT_MAX) = 2147483648.00000000,
-        which is not the starting 2147483647. But that's not a lrintf()
-	problem, integers this big get already rounded as floats.
-	*/
-
+/*
+ * INT32_MAX is 2147483647, but (float) INT_MAX = 2147483648.00000000,
+ * as the INT32_MAX int is already too big to be exactly represented as
+ * a float, and is rounded to the nearest multiple of 2^(31-23) = 256.
+ * So we get lrintf((float)INT_MAX) = 2147483648.00000000, correctly;
+ * not the starting 2147483647, but that is not a lrintf() problem.
+ */
 	{ (2 << 23)-1,	(2 << 23)-1	},
 	{ (2 << 23),	(2 << 23)	},
 	{ (2 << 23)+1,	(2 << 23)+0	},
