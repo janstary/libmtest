@@ -18,22 +18,22 @@ extern int optind;
 extern struct test tests[];
 
 int
-testfunc(OTYPE (*FUNC)(ITYPE), struct io *io)
+testfunc(OTYPE (*func)(ITYPE), struct io *io)
 {
 	OTYPE o;
 	struct io *v;
 	for (v = io; v->i; v++) {
-		if ((o = FUNC(v->i)) != v->o) {
-			printf(REALFMT" "REALFMT" "REALFMT"\n", v->i, v->o, o);
+		if ((o = func(v->i)) != v->o) {
+			printf(INUMFMT" "ONUMFMT" "ONUMFMT"\n", v->i, v->o, o);
 			if (vflag > 1)
-				printf(" "HEXAFMT" "HEXAFMT" "HEXAFMT"\n",
-					RU(v->i), RU(v->o), RU(o));
+				printf(" "IHEXFMT" "OHEXFMT" "OHEXFMT"\n",
+				INUMHEX(v->i), ONUMHEX(v->o), ONUMHEX(o));
 			return 1;
 		} else if (vflag > 0) {
-			printf(REALFMT" "REALFMT, v->i, v->o);
+			printf(INUMFMT" "ONUMFMT, v->i, v->o);
 			if (vflag > 1)
-				printf(" "HEXAFMT" "HEXAFMT,
-					RU(v->i), RU(v->o));
+				printf(" "IHEXFMT" "OHEXFMT,
+				INUMHEX(v->i), ONUMHEX(v->o));
 			putchar('\n');
 		}
 	}
