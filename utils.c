@@ -32,3 +32,19 @@ du(double d)
 	ud.d = d;
 	return ud.u;
 }
+
+long double
+uD(unsigned long long u)
+{
+	union uD uD;
+	uD.u = u;
+	return uD.D;
+}
+
+unsigned long long
+Du(long double D)
+{
+	union uD uD;
+	uD.D = D;
+	return uD.u;
+}

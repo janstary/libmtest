@@ -10,11 +10,19 @@ union ud {
 	double   d;
 };
 
-float		uf(uint32_t);
-uint32_t	fu(float);
+union uD {
+	unsigned long long u;
+	long double        D;
+};
 
-double		ud(uint64_t);
-uint64_t	du(double);
+float			uf(uint32_t);
+uint32_t		fu(float);
+
+double			ud(uint64_t);
+uint64_t		du(double);
+
+long double		uD(unsigned long long);
+unsigned long long	Du(long double);
 
 #define F_ALMOST10 0x0.ffffffp0 /* 0x3f7fffff, just below 0x3f800000 = 1.0 */
 #define F_ALMOST15 0x1.7ffffep0 /* 0x3fbfffff, just below 0x3fc00000 = 1.5 */
