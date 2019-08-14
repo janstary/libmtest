@@ -12,6 +12,6 @@ struct test {
 	char*	comment;
 	struct io {
 		ITYPE i;
-		ITYPE o;
+		OTYPE o;
 	}	*io;
 };
