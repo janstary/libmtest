@@ -10,6 +10,7 @@
 #include "test-func.h"
 
 int vflag = 0;
+int nflag = 1;
 int dflag = 1;
 int uflag = 1;
 int zflag = 1;
@@ -46,21 +47,30 @@ main(int argc, char** argv)
 	int c;
 	struct test *t;
 
-	while ((c = getopt(argc, argv, "vduz")) != -1) switch (c) {
+	while ((c = getopt(argc, argv, "vnduz")) != -1) switch (c) {
 		case 'v':
 			vflag++;
 			break;
+		case 'n':
+			nflag = 1;
+			dflag = 0;
+			uflag = 0;
+			zflag = 0;
+			break;
 		case 'd':
+			nflag = 0;
 			dflag = 1;
 			uflag = 0;
 			zflag = 0;
 			break;
 		case 'u':
+			nflag = 0;
 			dflag = 0;
 			uflag = 1;
 			zflag = 0;
 			break;
 		case 'z':
+			nflag = 0;
 			dflag = 0;
 			uflag = 0;
 			zflag = 1;
@@ -74,7 +84,7 @@ main(int argc, char** argv)
 	for (t = tests; t->io; t++) {
 		switch (t->round) {
 			case FE_TONEAREST:
-				if (dflag + uflag + zflag > 0)
+				if (0 == nflag)
 					continue;
 				break;
 			case FE_DOWNWARD:
