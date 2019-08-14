@@ -1,10 +1,3 @@
-#include <unistd.h>
-#include <stdint.h>
-#include <limits.h>
-#include <stdio.h>
-#include <math.h>
-#include <fenv.h>
-
 #include "test-rintf.h"
 #include "test-func.h"
 #include "utils.h"
