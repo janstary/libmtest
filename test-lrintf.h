@@ -7,5 +7,5 @@
 
 #define OTYPE	long
 #define ONUMFMT	"%ld"
-#define OHEXFMT	"%0#10lx"
+#define OHEXFMT	"%0#18lx"
 #define ONUMHEX (unsigned long)

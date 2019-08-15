@@ -17,6 +17,7 @@ struct io roundn[] = {
 	{ D_ALMOST35,	3 },
 	{ 3.5,		4 },
 	{ 4.0,		4 },
+/* FIXME: test around 2 << 22, for machines with 32 bit longs */
 /* After (2 << 49), ints are only representable as floats
  * with a precision of .25, so that's what we test on. */
 	{ 0x2.0p49,		0x0004000000000000	},
@@ -45,7 +46,7 @@ struct io roundn[] = {
 	{ 0x2.0p59,		0x1000000000000000	},
 	{ 0x2.0p60,		0x2000000000000000	},
 	{ 0x2.0p61,		0x4000000000000000	},
-	{ 0x2.0p62,		0x8000000000000000 - 1	},
+	{ 0x2.0p62,		0x7fffffffffffffff 	},
 /*	{ 0x2.0p62,		0x8000000000000000	}, */
 	{ LONG_MAX,		LONG_MAX },
 	{ 0.0,		0 }
