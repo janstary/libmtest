@@ -3,6 +3,9 @@
 #include "utils.h"
 
 struct io roundn[] = {
+/* Mind that floats round to even, i.e. at the .5 points, when the nearest
+ * int are both the int below ant the int above, they round to the one
+ * which ends evenly, bitwise; so 2.5 goes to 2.0, but 3.5 goes to 4.0 */
 	{ -4.0,		-4.0 },
 	{ -3.5,		-4.0 },
 	{ -F_ALMOST35,	-3.0 },
@@ -27,6 +30,8 @@ struct io roundn[] = {
 	{ +F_ALMOST35,	+3.0 },
 	{ +3.5,		+4.0 },
 	{ +4.0,		+4.0 },
+	/* FIXME test up to where halves are representable,
+	 * as in test-lrintf; for other rounding modes as well */
 	{ +0.0,         +0.0 }
 };
 
