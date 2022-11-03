@@ -1,0 +1,7 @@
+Uniformize the input-output interface.
+Informaly, we want to pass a function,
+which takes some numbr of args of certain types,
+and oututs a certain type. As of now, we have
+a header file for each test, and only do unary.
+
+The build fo all test can be made uniform in the Makefile
