@@ -7,7 +7,7 @@
 
 #include "utils.h"
 #include "which.h"
-#include "test-func.h"
+#include "test.h"
 
 int vflag = 0;
 int nflag = 1;

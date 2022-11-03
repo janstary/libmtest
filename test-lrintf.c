@@ -1,6 +1,6 @@
 #include "test-lrintf.h"
-#include "test-func.h"
 #include "utils.h"
+#include "test.h"
 
 struct io roundn[] = {
 /* With small values, test the breaking points:

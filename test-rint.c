@@ -1,6 +1,6 @@
 #include "test-rint.h"
-#include "test-func.h"
 #include "utils.h"
+#include "test.h"
 
 struct io roundn[] = {
 	{ -4.0,		-4.0 },

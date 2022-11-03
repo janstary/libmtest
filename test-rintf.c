@@ -1,6 +1,6 @@
 #include "test-rintf.h"
-#include "test-func.h"
 #include "utils.h"
+#include "test.h"
 
 struct io roundn[] = {
 /* Mind that floats round to even, i.e. at the .5 points, when the nearest
