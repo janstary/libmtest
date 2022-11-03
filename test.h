@@ -13,7 +13,6 @@ struct io {
 };
 
 struct test {
-	char *comment;
 	int (*pre)(void);
 	struct io *io;
 };

@@ -36,4 +36,4 @@ struct io io[] = {
 	{ +0.0,         +0.0 }
 };
 
-struct test test = { "rounding to nearest", pre, io };
+struct test test = { pre, io };

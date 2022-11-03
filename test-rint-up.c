@@ -29,4 +29,4 @@ struct io io[] = {
 	{ +0.0,         +0.0 }
 };
 
-struct test test = { "rounding upward", pre, io };
+struct test test = { pre, io };

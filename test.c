@@ -53,8 +53,6 @@ main(int argc, char** argv)
 
 	if (t->pre && t->pre())
 		return 1;
-	if (vflag && t->comment)
-		printf("%s\n", t->comment);
 	if (0 != dotest(FUNC, t->io))
 		return 1;
 
