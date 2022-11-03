@@ -43,4 +43,4 @@ utils.o: utils.c utils.h
 	$(CC) $(CFLAGS) -c utils.c
 
 clean:
-	rm -rf $(TESTS) *.o which.h core *~
+	rm -rf $(TESTS) *.o which.h *.core *~
