@@ -3,8 +3,8 @@
 #include "test.h"
 
 struct io roundn[] = {
-/* With small values, test the breaking points:
- * just below and just above 0.5 */
+/* With small values, test the breaking points just below and above 0.5
+ * FIXME: test negative values as well. */
 	{ 0.5,		0 },
 	{ D_FOLLOW05,	1 },
 	{ 1.0,		1 },

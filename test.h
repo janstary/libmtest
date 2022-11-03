@@ -7,11 +7,13 @@
 
 #include "which.h"
 
+struct io {
+	ITYPE i;
+	OTYPE o;
+};
+
 struct test {
-	int	round;
-	char*	comment;
-	struct io {
-		ITYPE i;
-		OTYPE o;
-	}	*io;
+	char *comment;
+	int (*pre)(void);
+	struct io *io;
 };
