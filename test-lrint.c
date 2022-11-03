@@ -46,21 +46,27 @@ struct io roundn[] = {
 	{ 0x2.0p59,		0x1000000000000000	},
 	{ 0x2.0p60,		0x2000000000000000	},
 	{ 0x2.0p61,		0x4000000000000000	},
+/*
 	{ 0x2.0p62,		0x7fffffffffffffff 	},
-/*	{ 0x2.0p62,		0x8000000000000000	}, */
 	{ LONG_MAX,		LONG_MAX },
+		implicit conversion from 'long' to 'double' changes value
+		from 9223372036854775807 to 9223372036854775808.
+*/
 	{ 0.0,		0 }
 };
 
 struct io roundd[] = {
+	/* FIXME */
 	{ 0.0,		0 }
 };
 
 struct io roundu[] = {
+	/* FIXME */
 	{ 0.0,		0 }
 };
 
 struct io roundz[] = {
+	/* FIXME */
 	{ 0.0,		0 }
 };
 
