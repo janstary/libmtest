@@ -1,6 +1,6 @@
 LDFLAGS	= -lm
 CFLAGS	= -std=c99 -Wall -pedantic
-TESTS	= test-rint-near
+TESTS	= test-rint-near test-rint-down
 OBJS	= utils.o
 
 all: $(TESTS)
@@ -12,7 +12,11 @@ test-rint-near: test-rint-near.c test-rint-near.h test.h test.c $(OBJS)
 	cp test-rint-near.h which.h
 	$(CC) $(CFLAGS) -c test-rint-near.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ test-rint-near.o test.c $(OBJS)
-	# This build can be made uniform for all tests
+
+test-rint-down: test-rint-down.c test-rint-down.h test.h test.c $(OBJS)
+	cp test-rint-down.h which.h
+	$(CC) $(CFLAGS) -c test-rint-down.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ test-rint-down.o test.c $(OBJS)
 
 utils.o: utils.c utils.h
 	$(CC) $(CFLAGS) -c utils.c
