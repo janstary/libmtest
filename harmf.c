@@ -3,8 +3,7 @@
  * over cca 15.404; note that the reason is not that the 1/n eventualy drops
  * below MIN_FLOAT, but rather that the addition of the relatively tiny 1/n
  * to the relatively large sum no longer makes a difference. For 32bit floats,
- * this happens when adding 1/2097152 = 0.00000047683716 (0x35000000) no longer
- * increases 15.40368270874023437500 (0x4176757c) */
+ * adding 1/2097152 (0x35000000) no longer increases 0x4176757c */
 
 #include <stdint.h>
 #include <stdio.h>
@@ -20,7 +19,7 @@ main(void)
 
 	do {
 		this = next;
-		printf("%u %16.14f (%#0x)  %25.20f (%#0x)\n",
+		printf("%7u %16.14f (%#0x)  %25.20f (%#0x)\n",
 			n, x, *(uint32_t*)(&x), this, *(uint32_t*)(&this));
 		x = (1.0) / ++n;
 		next = this + x;
