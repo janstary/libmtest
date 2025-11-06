@@ -3,11 +3,11 @@
 int
 main(void)
 {
-	printf("int:     %lu\n", sizeof(int));
-	printf("long:    %lu\n", sizeof(long));
-	printf("llong:   %lu\n", sizeof(long long));
-	printf("float:   %lu\n", sizeof(float));
-	printf("double:  %lu\n", sizeof(double));
-	printf("ldouble: %lu\n", sizeof(long double));
+	printf("int:         %2lu\n", sizeof(int));
+	printf("long:        %2lu\n", sizeof(long));
+	printf("long long:   %2lu\n", sizeof(long long));
+	printf("float:       %2lu\n", sizeof(float));
+	printf("double:      %2lu\n", sizeof(double));
+	printf("long double: %2lu\n", sizeof(long double));
 	return 0;
 }
