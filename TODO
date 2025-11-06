@@ -1,3 +1,5 @@
+ceil(), floor()
+
 Uniformize the input-output interface.
 Informaly, we want to pass a function,
 which takes some numbr of args of certain types,

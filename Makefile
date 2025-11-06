@@ -1,6 +1,7 @@
 LDFLAGS	= -lm
 CFLAGS	= -std=c99 -Wall -pedantic
 TESTS	= test-rint-near test-rint-down test-rint-up test-rint-zero \
+	  test-rintf-near \
 	  test-sin test-sinf
 OBJS	= utils.o
 
@@ -28,6 +29,11 @@ test-rint-zero: test-rint-zero.c test-rint-zero.h test.h test.c $(OBJS)
 	cp test-rint-zero.h which.h
 	$(CC) $(CFLAGS) -c test-rint-zero.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ test-rint-zero.o test.c $(OBJS)
+
+test-rintf-near: test-rintf-near.c test-rintf-near.h test.h test.c $(OBJS)
+	cp test-rintf-near.h which.h
+	$(CC) $(CFLAGS) -c test-rintf-near.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ test-rintf-near.o test.c $(OBJS)
 
 test-sin: test-sin.c test-sin.h test.h test.c $(OBJS)
 	cp test-sin.h which.h

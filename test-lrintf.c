@@ -32,8 +32,8 @@ struct io roundn[] = {
 	{ (2 << 21) + 0.50,	(2 << 21)	},
 	{ (2 << 21) + 1.00,	(2 << 21) + 1	},
 	{ (2 << 21) + 1.50,	(2 << 21) + 2	},
-/* After (2 << 22), the precision drops to 1.0;
- * so just check that integers get rounded to themselves. */
+/* After (2 << 22), the precision drops to 1.0; so just check
+ * that integer floats get rounded to themselves. */
 	{ 0x2.0p22,	0x0000000000800000L	},
 	{ 0x2.0p23,	0x0000000001000000L	},
 	{ 0x2.0p24,	0x0000000002000000L	},
