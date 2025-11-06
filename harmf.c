@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#define FMT "%7u %15.13f %#010x  %21.18f %#010x\n"
+#define FMT "%7u  %15.13f %#010x  %21.18f %#010x\n"
 
 int
 main(void)
