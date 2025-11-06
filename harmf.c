@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <math.h>
 
+#define FMT "%7u %15.13f %#010x  %21.18f %#010x\n"
+
 int
 main(void)
 {
@@ -19,14 +21,11 @@ main(void)
 
 	do {
 		this = next;
-		printf("%7u %16.14f (%#0x)  %25.20f (%#0x)\n",
-			n, x, *(uint32_t*)(&x), this, *(uint32_t*)(&this));
+		printf(FMT, n, x, *(uint32_t*)(&x), this, *(uint32_t*)(&this));
 		x = (1.0) / ++n;
 		next = this + x;
 	} while (next > this);
 
-	printf("%u %16.14f (%#0x)  %25.20f (%#0x)\n",
-		n, x, *(uint32_t*)(&x), this, *(uint32_t*)(&this));
-
+	printf(FMT, n, x, *(uint32_t*)(&x), this, *(uint32_t*)(&this));
 	return 0;
 }
